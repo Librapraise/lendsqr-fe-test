@@ -26,6 +26,8 @@ const DashboardPage: React.FC = () => {
   const [activeActionIndex, setActiveActionIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const actionRef = useRef<HTMLDivElement | null>(null);
   const filterRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
@@ -80,16 +82,16 @@ const DashboardPage: React.FC = () => {
     }
   };
 
-  const getVisiblePages = (totalPages: number, currentPage: number): (number | string)[] => {
+  const getVisiblePages = (total: number, current: number): (number | string)[] => {
     const pages: (number | string)[] = [];
-    if (totalPages <= 6) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (total <= 6) return Array.from({ length: total }, (_, i) => i + 1);
     pages.push(1);
-    if (currentPage > 3) pages.push('...');
-    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+    if (current > 3) pages.push('...');
+    for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
       pages.push(i);
     }
-    if (currentPage < totalPages - 2) pages.push('...');
-    pages.push(totalPages);
+    if (current < total - 2) pages.push('...');
+    pages.push(total);
     return pages;
   };
 
@@ -108,10 +110,18 @@ const DashboardPage: React.FC = () => {
     setCurrentPage(1);
   };
 
+  // Function to handle the sidebar toggle
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(prev => !prev);
+  };
+
+
   return (
-    <div className="users-page">
-      <Navbar />
-      <Sidebar />
+    <div className={`users-page ${showSidebar ? 'sidebar-visible' : ''}`}>
+      <Navbar onToggleSidebar={toggleSidebar} />
+      {showSidebar && <Sidebar />}
       <div className="content-area">
         <main className="users-main">
           <h1 className="page-title">Users</h1>

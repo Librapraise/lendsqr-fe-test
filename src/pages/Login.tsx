@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.scss';
 import axios from 'axios';
 
-
-
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
@@ -14,34 +12,36 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-
-  // Toggle password visibility
-  // This function will toggle the visibility of the password input field
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Handle login form submission
-  // This function will be called when the user submits the login form
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     try {
-      const res = await axios.get('https://mocki.io/v1/1da5a4a7-3935-4ca3-a839-9a84dd8dddb2');
-      const user = res.data;
-  
-      if (email === user.email && password === user.password) {
+      const res = await axios.get('login.json'); // Adjust the path to your JSON file
+      const users = res.data;
+
+      const matchedUser = users.find(
+        (user: any) =>
+          user.email.toLowerCase() === email.toLowerCase() &&
+          user.password === password
+      );
+
+      if (matchedUser) {
         localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('loggedInUser', JSON.stringify(matchedUser));
+        setError('');
         navigate('/dashboard');
       } else {
         setError('Invalid email or password');
       }
     } catch (error) {
-      console.error(error);
-      setError('Login error. Please try again.');
+      console.error('Login error:', error);
+      setError('Login failed. Please try again.');
     }
   };
-  
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isAuthenticated');

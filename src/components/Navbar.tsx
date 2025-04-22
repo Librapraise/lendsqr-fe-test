@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.scss';
-import { FaBell } from 'react-icons/fa';
+import { FaBell, FaBars } from 'react-icons/fa';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onToggleSidebar: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
   return (
     <header className="navbar">
       <div className="navbar-left">
+        <FaBars className="menu-icon" onClick={onToggleSidebar} />
         <img src="./src/assets/lendsqrlogo.png" alt="Lendsqr Logo" className="logo" />
         <div className="search-bar">
           <input type="text" placeholder="Search for anything" />

@@ -19,8 +19,27 @@ import {
   FaTachometerAlt,
   FaChevronDown,
 } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Sidebar: React.FC = () => {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear storage/session data
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Optional: toast or log
+    console.log("User logged out.");
+
+    // Redirect to login
+    navigate('/');
+  };
+
+
   return (
     <aside className="sidebar">
       <div className="org-switcher">
@@ -75,7 +94,7 @@ const Sidebar: React.FC = () => {
 
       <div className="logout-section">
         <FaSignOutAlt className="icon logout-icon" />
-        <button className="logout-btn">Logout</button>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
 
       <div className='footer'>

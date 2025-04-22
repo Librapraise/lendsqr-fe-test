@@ -15,7 +15,7 @@
 
   .sidebar {
     position: fixed;
-    top: 80px; // height of the navbar
+    top: 80px;
     left: 0;
     width: 240px;
     height: calc(100vh - 80px);
@@ -24,7 +24,30 @@
     border-right: 1px solid #eee;
     overflow-y: auto;
     z-index: 999;
+  
+    // Hidden by default on small screens
+    @media (max-width: 768px) {
+      display: none;
+    }
+  
+    // Show when toggled open
+    &.sidebar--open {
+      display: block;
+  
+      @media (max-width: 768px) {
+        position: fixed;
+        top: 60px; // assuming navbar height reduces
+        height: calc(100vh - 60px);
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+        background: #fff;
+        z-index: 999;
+      }
+    }
   }
+  
 
   .content-area {
     margin-left: 240px;
@@ -269,6 +292,141 @@
       }
     }
     
+  }
+}
+
+
+// =================== Responsive Styles ===================
+
+@media (max-width: 1024px) {
+  .users-page {
+    .content-area {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .users-main {
+      .stats-cards {
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .card {
+          flex: 1 1 calc(50% - 0.5rem);
+        }
+      }
+
+      .user-table-container {
+        padding: 1.5rem;
+      }
+
+      .pagination {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .users-page {
+    .navbar {
+      height: 60px;
+    }
+
+    .sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+      padding: 1rem;
+      border-right: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .content-area {
+      margin-left: 0;
+      padding: 1rem;
+      padding-top: 2rem;
+    }
+
+    .users-main {
+      h1.page-title {
+        font-size: 1.4rem;
+      }
+
+      .stats-cards {
+        flex-direction: column;
+
+        .card {
+          width: 100%;
+        }
+      }
+
+      .user-table-container {
+        padding: 1rem;
+
+        .user-table {
+          thead th,
+          tbody td {
+            font-size: 0.75rem;
+            white-space: nowrap;
+            padding-right: 0.5rem;
+          }
+        }
+      }
+
+      .pagination {
+        .page-controls {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .users-page {
+    .users-main {
+      margin-top: 3rem;
+      h1.page-title {
+        font-size: 1.2rem;
+      }
+
+      .stats-cards {
+        .card {
+          padding: 1rem 0 1rem 0;
+
+          .icon, p, h3 {
+            margin-left: 1rem;
+          }
+          
+        }
+      }
+
+      .user-table-container {
+        padding: 0.5rem;
+
+        .user-table {
+          font-size: 0.7rem;
+
+          th,
+          td {
+            padding: 0.5rem;
+          }
+        }
+      }
+
+      .pagination {
+        font-size: 0.75rem;
+
+        .page-controls span {
+          width: 26px;
+          height: 26px;
+          font-size: 0.75rem;
+        }
+      }
+    }
   }
 }
 
