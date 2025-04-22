@@ -2,8 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from "./pages/Login";
 import DashboardPage from './pages/Dashboard';
-import UserDetailsPage from './pages/Userdetails';
 import './styles/global.scss';
+import UserDetails from './pages/Userdetails';
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/users" element={<UserDetailsPage />} />
+        <Route path="/users/:id" element={<UserDetails />} />
       </Routes>
     </Router>
   );

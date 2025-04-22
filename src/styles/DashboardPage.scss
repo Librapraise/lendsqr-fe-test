@@ -46,7 +46,7 @@
 
       .card {
         background-color: #fff;
-        padding: 1rem;
+        padding: 1.5rem;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         flex: 1;
@@ -55,8 +55,13 @@
         text-align: left;
 
         .icon {
-          font-size: 1.5rem;
           margin-bottom: 0.5rem;
+        }
+
+        .icon-card {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
         }
 
         p {
@@ -64,7 +69,7 @@
         }
 
         h3 {
-          margin: 0.25rem 0 0;
+          margin: 1rem 0 0;
           font-size: 1.25rem;
           font-weight: bold;
           color: #213f7d;
@@ -92,6 +97,17 @@
       overflow-x: auto;
       padding: 30px 30px;
 
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+    
+      // For Firefox
+      scrollbar-width: none;
+    
+      // For IE and Edge (older)
+      -ms-overflow-style: none;
+
       .user-table {
         width: 100%;
         border-collapse: collapse;
@@ -108,7 +124,7 @@
             font-size: 12px;
 
             span {
-              margin-right: 0.5rem;
+              margin-right: 0.3rem;
             }
 
             .icon {
@@ -130,7 +146,7 @@
               padding-bottom: 1rem;
               padding-right: 1rem;
               color: #545f7d;
-              font-size: 0.875rem;
+              font-size: 12px;
 
               .status {
                 padding: 0.25rem 0.75rem;
@@ -179,55 +195,60 @@
     }
     .pagination {
       display: flex;
+      justify-content: space-between;
       align-items: center;
       font-size: 0.875rem;
       color: #213f7d;
-      padding: 1rem 0;
+      padding: 1.5rem 0 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     
       .page-info {
-        flex: 1;
         font-weight: 500;
-        gap: 120px;
-      }
-
-      span {
-        margin: 0 0.25rem;
-      }
+        display: flex;
+        align-items: center;
     
-      select {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 6px;
-        background-color: #213F7D1A;
-        color: #213f7d;
-        font-size: 0.875rem;
-        cursor: pointer;
-        outline: none;
-        margin: 0 0.5rem 0 0.5rem,;
+        span {
+          margin-right: 0.5rem;
+        }
     
-        &:hover {
-          background-color: #545f7d;
-          color: #fff;
+        select {
+          padding: 0.4rem 0.75rem;
+          margin-right: 0.5rem;
+          border: none;
+          border-radius: 6px;
+          background-color: #213f7d1a;
+          color: #213f7d;
+          font-size: 0.875rem;
+          cursor: pointer;
+          outline: none;
+    
+          &:hover {
+            background-color: #213f7d;
+            color: #fff;
+          }
         }
       }
     
       .page-controls {
         display: flex;
         align-items: center;
+        gap: 0.25rem;
     
         span {
-          display: inline-flex;
+          display: flex;
           align-items: center;
           justify-content: center;
           width: 32px;
           height: 32px;
           border-radius: 6px;
           color: #213f7d;
+          font-weight: 500;
           cursor: pointer;
           transition: background 0.3s;
     
           &.page {
-            font-weight: 500;
+            font-size: 0.875rem;
           }
     
           &.active {
@@ -236,11 +257,19 @@
             font-weight: bold;
           }
     
-          &:hover:not(.active) {
+          &.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+          }
+    
+          &:hover:not(.active):not(.disabled) {
             background-color: rgba(33, 63, 125, 0.1);
           }
         }
       }
     }
+    
   }
 }
+
+
