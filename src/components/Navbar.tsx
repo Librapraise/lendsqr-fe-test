@@ -12,7 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
     <header className="navbar">
       <div className="navbar-left">
         <button className="sidebar-toggle" onClick={toggleSidebar}>☰</button>
-        <img src="./src/assets/lendsqrlogo.png" alt="Lendsqr Logo" className="logo" />
+        <img src="assets/lendsqrlogo.png" alt="Lendsqr Logo" className="logo" />
         <div className="search-bar">
           <input type="text" placeholder="Search for anything" />
           <button type="button">🔍</button>
@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
       <div className="navbar-right">
         <a href="#" className="docs-link">Docs</a>
         <FaBell className="icon bell" />
-        <img src="./src/assets/userimage.png" alt="User" className="avatar" />
+        <img src="assets/userimage.png" alt="User" className="avatar" />
         <span className="username">Adedeji ▾</span>
       </div>
     </header>

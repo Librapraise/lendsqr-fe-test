@@ -55,7 +55,7 @@
     .login-form {
       display: flex;
       flex-direction: column;
-
+      outline: none;
       input {
         padding: 1rem;
         font-size: 1rem;
@@ -67,10 +67,9 @@
       .password-field {
         display: flex;
         align-items: center;
-        height: 3.5rem;
         border: 1px solid #ccc;
         border-radius: 5px;
-        padding: 0 1rem;
+        padding: 0 0.5rem;
         margin-bottom: 1rem;
         background-color: white;
 
@@ -216,10 +215,12 @@
       }
 
       .login-form {
+        margin-left: 2rem;
         input,
         .password-field,
         .login-button {
           padding: 0.85rem;
+          width: auto;
         }
       }
     }

@@ -127,7 +127,7 @@ const DashboardPage: React.FC = () => {
             ].map(({ img, title, count, class: color }, idx) => (
               <div className="card" key={idx}>
                 <div className={`icon ${color}`}>
-                  <img className="icon-card" src={`./src/assets/${img}`} alt={title} />
+                  <img className="icon-card" src={`/assets/${img}`} alt={title} />
                 </div>
                 <p>{title}</p>
                 <h3>{count}</h3>

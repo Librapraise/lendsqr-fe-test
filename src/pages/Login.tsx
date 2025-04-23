@@ -53,8 +53,8 @@ const LoginPage: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-left">
-        <img src="./src/assets/lendsqrlogo.png" alt="Lendsqr Logo" className="loginlogo" />
-        <img src="./src/assets/loginimage.png" alt="Lendsqr Login" className="logo" />
+        <img src="assets/lendsqrlogo.png" alt="Lendsqr Logo" className="loginlogo" />
+        <img src="assets/loginimage.png" alt="Lendsqr Login" className="logo" />
       </div>
 
       <div className="login-right">
