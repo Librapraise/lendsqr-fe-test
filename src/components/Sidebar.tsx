@@ -22,8 +22,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
+interface SidebarProps {
+  isOpen: boolean;
+}
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
   const navigate = useNavigate();
 
@@ -41,7 +44,7 @@ const Sidebar: React.FC = () => {
 
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
       <div className="org-switcher">
         <FaBriefcase className="icon" />
         <p>Switch Organization</p>

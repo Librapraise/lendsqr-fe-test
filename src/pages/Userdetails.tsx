@@ -40,7 +40,9 @@ const UserDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -56,13 +58,12 @@ const UserDetails: React.FC = () => {
     fetchUser();
   }, [id]);
 
-
   if (!user) return <div className="loading">Loading user details...</div>;
 
   return (
     <div className="user-details-page">
-      <Navbar />
-      <Sidebar />
+      <Navbar toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={isSidebarOpen} />
       <main className="user-details-main">
         <div className="user-details-container">
           <div className="top-header">
@@ -79,6 +80,7 @@ const UserDetails: React.FC = () => {
             </div>
           </div>
 
+          {/* Details Card */}
           <div className="user-details-card">
             <div className="user-details-header">
               <div className="user-info">
@@ -108,6 +110,7 @@ const UserDetails: React.FC = () => {
             </div>
           </div>
 
+          {/* Sections */}
           <div className="user-sections">
             <section>
               <h3>Personal Information</h3>

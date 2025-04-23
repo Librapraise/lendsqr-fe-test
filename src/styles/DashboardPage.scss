@@ -24,30 +24,45 @@
     border-right: 1px solid #eee;
     overflow-y: auto;
     z-index: 999;
-  
+    
     // Hidden by default on small screens
     @media (max-width: 768px) {
-      display: none;
+      display: none; // hide by default on mobile
     }
   
-    // Show when toggled open
+
     &.sidebar--open {
       display: block;
   
       @media (max-width: 768px) {
         position: fixed;
-        top: 60px; // assuming navbar height reduces
-        height: calc(100vh - 60px);
+        top: 60px;
         width: 100%;
-        border-right: none;
+        height: calc(100vh - 60px);
+        background: white;
         border-bottom: 1px solid #eee;
         padding: 1rem;
-        background: #fff;
-        z-index: 999;
       }
     }
   }
   
+  //sidebar toggle button
+  .sidebar-toggle {
+    position: absolute;
+    top: 16px;
+    left: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 1501; // ensure it's above everything else
+    color: #213f7d;
+  
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }  
+  
+
 
   .content-area {
     margin-left: 240px;

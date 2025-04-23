@@ -4,7 +4,7 @@
 
   .sidebar {
     position: fixed;
-    top: 80px; // height of the navbar
+    top: 80px;
     left: 0;
     width: 240px;
     height: calc(100vh - 80px);
@@ -12,16 +12,64 @@
     padding: 2rem 1rem;
     border-right: 1px solid #eee;
     z-index: 999;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    &.sidebar--open {
+      display: block;
+
+      @media (max-width: 768px) {
+        position: fixed;
+        top: 60px;
+        height: calc(100vh - 60px);
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 1rem;
+        background: #fff;
+        z-index: 999;
+      }
+    }
   }
 
+
+    //sidebar toggle button
+    .sidebar-toggle {
+      position: absolute;
+      top: 16px;
+      left: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      z-index: 1501; // ensure it's above everything else
+      color: #213f7d;
+    
+      @media (min-width: 769px) {
+        display: none;
+      }
+    }  
+
+    
   .user-details-main {
     flex: 1;
     margin-left: 240px;
-    padding-top: 40px; // spacing below navbar
+    padding-top: 40px;
     padding-left: 5rem;
     padding-right: 4rem;
     font-family: 'Work Sans', sans-serif;
     color: #213f7d;
+
+    @media (max-width: 1024px) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+      padding: 1rem;
+    }
 
     .back-button {
       color: #545f7d;
@@ -42,12 +90,13 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 0.5rem;
-    
+        flex-wrap: wrap;
+
         .left {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
-    
+
           .back-link {
             display: flex;
             align-items: center;
@@ -55,28 +104,28 @@
             font-weight: 500;
             font-size: 14px;
             cursor: pointer;
-    
+
             .arrow-icon {
               margin-right: 0.5rem;
             }
-    
+
             &:hover {
               text-decoration: underline;
             }
           }
-    
+
           h2 {
             font-size: 24px;
             color: #213f7d;
             font-weight: 700;
           }
         }
-    
+
         .action-buttons {
           display: flex;
           gap: 1rem;
           margin-top: 1rem;
-    
+
           .blacklist-btn,
           .activate-btn {
             padding: 0.5rem 1.2rem;
@@ -88,31 +137,27 @@
             border: 2px solid;
             transition: all 0.3s ease;
           }
-    
+
           .blacklist-btn {
             color: #e4033b;
             border-color: #e4033b;
-    
+
             &:hover {
               background-color: #ffe8ee;
             }
           }
-    
+
           .activate-btn {
             color: #39cdcc;
             border-color: #39cdcc;
-    
+
             &:hover {
               background-color: #e7f9f9;
             }
           }
         }
       }
-    }
 
-    .user-details-container {
-      position: relative;
-      
       .user-details-header {
         background: #fff;
         padding: 2rem;
@@ -122,13 +167,12 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 2rem;
-        border-bottom: none;
-      
+
         .user-info {
           display: flex;
           align-items: center;
           gap: 1.5rem;
-      
+
           .avatar {
             width: 100px;
             height: 100px;
@@ -140,20 +184,20 @@
             font-size: 40px;
             color: #213f7d;
           }
-      
+
           h2 {
             font-size: 20px;
             font-weight: 600;
             color: #213f7d;
           }
-      
+
           p {
             font-size: 13px;
             color: #545f7d;
             margin-top: 0.2rem;
           }
         }
-      
+
         .user-tier {
           display: flex;
           flex-direction: column;
@@ -161,43 +205,44 @@
           padding: 0 2rem;
           border-left: 1px solid #dfe1e6;
           border-right: 1px solid #dfe1e6;
-      
+
           span {
             font-size: 13px;
             color: #545f7d;
             margin-bottom: 0.3rem;
           }
-      
+
           .stars {
             color: gold;
             font-size: 18px;
           }
         }
-      
+
         .account-info {
           display: flex;
           flex-direction: column;
-      
+
           h3 {
             font-size: 20px;
             color: #213f7d;
             margin-bottom: 0.3rem;
           }
-      
+
           p {
             font-size: 13px;
             color: #545f7d;
           }
         }
       }
-      
+
       .tabs {
         background: #fff;
         padding: 0 2rem;
         display: flex;
         justify-content: space-between;
         gap: 2.5rem;
-      
+        flex-wrap: wrap;
+
         button {
           padding: 1rem 0;
           background: none;
@@ -207,10 +252,10 @@
           color: #545f7d;
           cursor: pointer;
           position: relative;
-      
+
           &.active {
             color: #39cdcc;
-      
+
             &::after {
               content: "";
               position: absolute;
@@ -225,7 +270,6 @@
       }
     }
 
-
     .user-sections {
       background-color: #fff;
       padding: 2rem;
@@ -234,29 +278,29 @@
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
-    
+
       section {
         position: relative;
         padding-bottom: 2rem;
-    
+
         h3 {
           font-size: 16px;
           font-weight: 600;
           color: #213f7d;
           margin-bottom: 1rem;
         }
-    
+
         .info-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           row-gap: 1.5rem;
           font-size: 16px;
           font-weight: 500;
-    
+
           div {
             display: flex;
             flex-direction: column;
-    
+
             strong {
               color: #545f7d;
               font-weight: 500;
@@ -265,7 +309,7 @@
               margin-bottom: 0.25rem;
               padding-bottom: 0.2rem;
             }
-    
+
             span,
             div {
               color: #213f7d;
@@ -274,8 +318,7 @@
             }
           }
         }
-    
-        // horizontal line except on last section
+
         &:not(:last-child)::after {
           content: "";
           position: absolute;
@@ -287,6 +330,26 @@
         }
       }
     }
-    
+  }
+}
+
+@media (max-width: 480px) {
+  .user-details-page .user-details-main {
+    padding: 1rem;
+
+    .user-details-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .tabs {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .user-sections {
+      padding: 1rem;
+    }
   }
 }

@@ -94,10 +94,12 @@
     padding: 0 1rem;
 
     .navbar-left {
+      padding-left: 3rem;
       gap: 1rem;
 
       .logo {
         width: 110px;
+        margin-top: 12px;
       }
 
       .menu-icon {

@@ -26,7 +26,7 @@ const DashboardPage: React.FC = () => {
   const [activeActionIndex, setActiveActionIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+
 
   const actionRef = useRef<HTMLDivElement | null>(null);
   const filterRef = useRef<HTMLDivElement | null>(null);
@@ -67,9 +67,7 @@ const DashboardPage: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToggleClick = (index: number) => {
-    setActiveActionIndex(prev => (prev === index ? null : index));
-  };
+  
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -111,17 +109,12 @@ const DashboardPage: React.FC = () => {
   };
 
   // Function to handle the sidebar toggle
-  const [showSidebar, setShowSidebar] = useState(false);
-
-  const toggleSidebar = () => {
-    setShowSidebar(prev => !prev);
-  };
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className={`users-page ${showSidebar ? 'sidebar-visible' : ''}`}>
-      <Navbar onToggleSidebar={toggleSidebar} />
-      {showSidebar && <Sidebar />}
+    <div className={`users-page`}>
+      <Navbar toggleSidebar={() => setIsSidebarOpen(prev => !prev)} />
+      <Sidebar isOpen={isSidebarOpen} />
       <div className="content-area">
         <main className="users-main">
           <h1 className="page-title">Users</h1>
