@@ -35,8 +35,8 @@ npm start
 ## 🔐 Authentication (Mocked)
 
 {
-  "email": "admin@lendsqr.com",
-  "password": "admin123"
+  "email": "admin@example.com",
+  "password": "admin"
 }
 
 ## 📦 Mock Data
